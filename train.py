@@ -19,7 +19,7 @@ cnnInputShape = (imgRows, imgCols, 1)
 
 # Reshape images for Keras - 60000,28,28 to 60000,28,28,1
 xTrain = xTrain.reshape(xTrain.shape[0], imgRows, imgCols, 1)
-xTest = xTest.reshape(xTest,shape[0], imgRows, imgCols, 1)
+xTest = xTest.reshape(xTest.shape[0], imgRows, imgCols, 1)
 
 xTrain = xTrain.astype(float)
 xTest = xTest.astype(float)
