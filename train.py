@@ -64,5 +64,48 @@ model.compile(loss= 'categorical_crossentropy', optimizer = SGD(0.1), metrics = 
 
 print(model.summary())
 
+
+#####################
+#Training the Model
+#####################
+
 batchSize = 32
 epochs = 5
+
+trainingHistory = model.fit(xTrain,
+							yTrain,
+							batch_size = batchSize,
+							epochs = epochs,
+							validation_data=(xTest,yTest),
+							verbose= 1)
+
+score = model.evaluate(xTest, yTest, verbose=0)
+print("Test loss score: ", score[0])
+print("Test accuracy score: ", score[1])
+
+if(score[1] > 0.95):
+	model.save("TrainedModels/mnist_cnn_with_5_Epochs.h5")
+	print("Model Saved")
+else:
+	print("Model has low accuracy")
+
+######################################
+#Display Matplot of Accuracy
+######################################
+
+history_dict = trainingHistory.history
+
+loss_values = history_dict['loss']
+acc = history_dict['acc']
+val_acc = history_dict['val_acc']
+dis_epochs = range(1, len(loss_values) + 1)
+
+line1 = plt.plot(dis_epochs, val_acc, label='Validation/Test Accuracy')
+line2 = plt.plot(dis_epochs, acc, label='Training Accuracy')
+plt.setp(line1, linewidth=2.5, marker = '+', markersize=10.0)
+plt.setp(line2, linewidth=2.5, marker = '>', markersize=10.0)
+plt.xlabel('Epochs') 
+plt.ylabel('Accuracy')
+plt.grid(True)
+plt.legend()
+plt.show()
