@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import keras
 from keras.datasets import mnist
 from keras.utils import np_utils
