@@ -1,4 +1,5 @@
 from keras.datasets import mnist
+from keras.utils import np_utils
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -29,4 +30,10 @@ xTrain /=255
 xTest /=255
 
 print("xTrain shape: ", xTrain.shape)
+
+#labels encoding - yTrain & yTest
+yTrain = np_utils.to_categorical(yTrain)
+yTest = np_utils.to_categorical(yTest)
+
+print("No. of Classes: ", yTest.shape[1])
 
